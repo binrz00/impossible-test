@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import axios from "axios";
 import App from "./App";
+import Scroll from "./components/Scroll/Scroll";
 //Health Check
 // axios.get("http://localhost:5000/ping").then(()=>{
 //     console.log("should be working")
@@ -9,4 +10,4 @@ import App from "./App";
 //     console.log("something is wrong")
 // })
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<Scroll/>, rootElement);

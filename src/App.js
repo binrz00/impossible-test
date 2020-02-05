@@ -4,7 +4,6 @@ import Paddle from "./components/Paddle";
 import { level_one } from "./levels";
 import Obstacle from "./components/Obstacle";
 import willCollide from "./utils/willCollide";
-
 import GameProvider from "./state/context";
 
 const obstacles = level_one.reduce((acc, cur, y) => {
