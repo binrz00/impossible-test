@@ -1,7 +1,6 @@
 import Loader from "./loader";
 import TileMap from "./tileMap";
 import Camera from "./camera";
-// import Keyboard from "./keyboard";
 
 export default class Game {
   constructor(context) {
@@ -9,13 +8,10 @@ export default class Game {
     this.loader = new Loader();
     this.tileMap = new TileMap();
     this.camera = new Camera(this.tileMap, 512, 512);
-    // this.keyboard = new Keyboard();
     this._previousElapsed = 0;
   }
 
   init = async () => {
-  //   this.keyboard.listenForEvents(
-  //     [this.keyboard.LEFT, this.keyboard.RIGHT, this.keyboard.UP, this.keyboard.DOWN]);
     const tiles = await this.loader.loadImage("tiles", "./assets/tiles.png");
     this.tileAtlas = this.loader.getImage("tiles");
     this.images = {
@@ -54,15 +50,7 @@ export default class Game {
   };
 
   update = delta => {
-    // handle camera movement with arrow keys
-    let dirX = 1;
-    let dirY = 0;
-    // if (this.keyboard.isDown(this.keyboard.LEFT)) { dirX = -1; }
-    // if (this.keyboard.isDown(this.keyboard.RIGHT)) { dirX = 1; }
-    // if (this.keyboard.isDown(this.keyboard.UP)) { dirY = -1; }
-    // if (this.keyboard.isDown(this.keyboard.DOWN)) { dirY = 1; }
-
-    this.camera.move(delta, dirX, dirY);
+    this.camera.move(delta);
   };
 
   getDelta = elapsed => {

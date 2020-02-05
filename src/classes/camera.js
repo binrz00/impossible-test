@@ -5,16 +5,13 @@ export default class Camera {
     this.width = width;
     this.height = height;
     this.maxX = map.columns * map.tileSize - width;
-    this.maxY = map.rows * map.tileSize - height;
-    this.SPEED = 256; // pixels per second
+    this.SPEED = 100; // pixels per second
   }
-
-  move = (delta, dirX, dirY) => {
+move = this.x * this.SPEED;
+  move = (delta) => {
     // move camera
-    this.x += dirX * this.SPEED * delta;
-    this.y += dirY * this.SPEED * delta;
+    this.x +=1 * this.SPEED * delta;
     // clamp values
     this.x = Math.max(0, Math.min(this.x, this.maxX));
-    this.y = Math.max(0, Math.min(this.y, this.maxY));
   }
 }
