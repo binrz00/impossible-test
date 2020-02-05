@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Game from "../../classes/game";
 import "./Scroll.css";
 import App from  "../../App"
-const CANVAS_WIDTH = 512;
-const CANVAS_HEIGHT = 512;
+const CANVAS_WIDTH = 600;
+const CANVAS_HEIGHT = 500;
 
 class Scroll extends Component {
   constructor(props) {

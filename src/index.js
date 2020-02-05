@@ -10,4 +10,4 @@ import Scroll from "./components/Scroll/Scroll";
 //     console.log("something is wrong")
 // })
 const rootElement = document.getElementById("root");
-ReactDOM.render(<Scroll/>, rootElement);
+ReactDOM.render(<><Scroll/><App/></>, rootElement);

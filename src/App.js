@@ -28,7 +28,7 @@ const obstacles = level_one.reduce((acc, cur, y) => {
 const initialState = {
   paddle1: {
     y: 200,
-    dy: 10,
+    dy: 0,
     x: 60,
     dx: 0,
     landed: false
@@ -59,8 +59,48 @@ function reducer(state, action) {
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  function handleKeyDown(e) {
-    if (e.keyCode === 32 && state.paddle1.dy !== -10) {
+  // function handleKeyDown(e) {
+  //   if (e.keyCode === 32) {
+  //     const jump = setTimeout(() => {
+  //       dispatch({
+  //         type: "MOVE_PADDLE_1",
+  //         payload: {
+  //           landed: false,
+  //           dy: 10
+  //         }
+  //       });
+  //     }, 300);
+
+  //     dispatch({
+  //       type: "MOVE_PADDLE_1",
+  //       payload: {
+  //         landed: false,
+  //         dy: -10
+  //       }
+  //     });
+  //     return () => clearTimeout(jump);
+  //   }
+  // }
+  function handleKeyUp(e) {
+    // if (e.keyCode === 32 && state.paddle1.dy !== 10) {
+    //   dispatch({
+    //     type: "MOVE_PADDLE_1",
+    //     payload: {
+    //       dy: 10
+    //     }
+    //   });
+    // }
+    if (e.keyCode === 32) {
+      const jump = setTimeout(() => {
+        dispatch({
+          type: "MOVE_PADDLE_1",
+          payload: {
+            landed: false,
+            dy: 10
+          }
+        });
+      }, 500);
+
       dispatch({
         type: "MOVE_PADDLE_1",
         payload: {
@@ -68,22 +108,13 @@ export default function App() {
           dy: -10
         }
       });
+      return () => clearTimeout(jump);
     }
   }
-  function handleKeyUp(e) {
-    if (e.keyCode === 32 && state.paddle1.dy !== 10) {
-      dispatch({
-        type: "MOVE_PADDLE_1",
-        payload: {
-          dy: 10
-        }
-      });
-    }
-  }
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [state]);
+  // useEffect(() => {
+  //   window.addEventListener("keydown", handleKeyDown);
+  //   return () => window.removeEventListener("keydown", handleKeyDown);
+  // }, [state]);
   useEffect(() => {
     window.addEventListener("keyup", handleKeyUp);
     return () => window.removeEventListener("keyup", handleKeyUp);
