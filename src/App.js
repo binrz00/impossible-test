@@ -24,14 +24,14 @@ const obstacles = level_one.reduce((acc, cur, y) => {
   }, []);
   return [...acc, ...blocks];
 }, []);
-console.log(obstacles);
 const initialState = {
   player: {
     y: 200,
     dy: 0,
     x: 60,
     dx: 0,
-    landed: false
+    landed: false,
+    r: 0
   },
   obstacles
 };
@@ -74,6 +74,7 @@ export default function App() {
       dispatch({
         type: "MOVE_PLAYER",
         payload: {
+          r: 90,
           //landed: false,
           dy: -5
         }
@@ -93,6 +94,7 @@ export default function App() {
       let x = state.player.x;
       let dx = state.player.dx;
       let landed = state.player.landed;
+      let r = state.player.r;
 
       const player = {
         y,
@@ -100,6 +102,7 @@ export default function App() {
         x,
         dx,
         landed,
+        r,
         height: 30,
         width: 30
       };
@@ -146,7 +149,7 @@ export default function App() {
         {state.obstacles.map(({ type, ...style }) => (
           <Obstacle type={type} style={style} />
         ))}
-        <Paddle paddleY={state.player.y} />
+        <Paddle movement={state.player} />
       </div>
     </GameProvider>
   );
