@@ -24,7 +24,6 @@ const obstacles = level_one.reduce((acc, cur, y) => {
   }, []);
   return [...acc, ...blocks];
 }, []);
-console.log(obstacles);
 const initialState = {
   player: {
     y: 200,
@@ -58,7 +57,6 @@ function reducer(state, action) {
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   function handleKeyDown(e) {
     if (e.keyCode === 32 && state.player.dy === 0) {
       const jump = setTimeout(() => {
@@ -67,6 +65,7 @@ export default function App() {
           payload: {
             landed: false,
             dy: 5
+
           }
         });
       }, 500);
@@ -76,6 +75,7 @@ export default function App() {
         payload: {
           //landed: false,
           dy: -5
+
         }
       });
       return () => clearTimeout(jump);
