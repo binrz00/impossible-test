@@ -5,7 +5,7 @@ import { level_one } from "./levels";
 import Obstacle from "./components/Obstacle";
 import willCollide from "./utils/willCollide";
 import GameProvider from "./state/context";
-
+import showObstacles from "./utils/showObstacles";
 const obstacles = level_one.reduce((acc, cur, y) => {
   const blocks = cur.split("").reduce((bs, b, x) => {
     if (b === " ") {
@@ -17,16 +17,15 @@ const obstacles = level_one.reduce((acc, cur, y) => {
         type: b,
         x: x * 10,
         y: y * 10,
-        width: 10,
-        height: 10
+        width: 30,
+        height: 30
       }
     ];
   }, []);
   return [...acc, ...blocks];
 }, []);
-
 const initialState = {
-  paddle1: {
+  player: {
     y: 200,
     dy: 0,
     x: 60,
@@ -38,18 +37,18 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "MOVE_PADDLE_1":
+    case "MOVE_PLAYER":
       return {
         ...state,
-        paddle1: {
-          ...state.paddle1,
+        player: {
+          ...state.player,
           ...action.payload
         }
       };
     case "RENDER":
       return {
         ...state,
-        paddle1: { ...state.paddle1, ...action.payload.paddle1 }
+        player: { ...state.player, ...action.payload.player }
       };
     default:
       throw new Error("Event not found: ", action.type);
@@ -58,77 +57,44 @@ function reducer(state, action) {
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // function handleKeyDown(e) {
-  //   if (e.keyCode === 32) {
-  //     const jump = setTimeout(() => {
-  //       dispatch({
-  //         type: "MOVE_PADDLE_1",
-  //         payload: {
-  //           landed: false,
-  //           dy: 10
-  //         }
-  //       });
-  //     }, 300);
-
-  //     dispatch({
-  //       type: "MOVE_PADDLE_1",
-  //       payload: {
-  //         landed: false,
-  //         dy: -10
-  //       }
-  //     });
-  //     return () => clearTimeout(jump);
-  //   }
-  // }
-  function handleKeyUp(e) {
-    // if (e.keyCode === 32 && state.paddle1.dy !== 10) {
-    //   dispatch({
-    //     type: "MOVE_PADDLE_1",
-    //     payload: {
-    //       dy: 10
-    //     }
-    //   });
-    // }
-    if (e.keyCode === 32) {
+  function handleKeyDown(e) {
+    if (e.keyCode === 32 && state.player.dy === 0) {
       const jump = setTimeout(() => {
         dispatch({
-          type: "MOVE_PADDLE_1",
+          type: "MOVE_PLAYER",
           payload: {
             landed: false,
-            dy: 10
+            dy: 5
+
           }
         });
       }, 500);
 
       dispatch({
-        type: "MOVE_PADDLE_1",
+        type: "MOVE_PLAYER",
         payload: {
-          landed: false,
-          dy: -10
+          //landed: false,
+          dy: -5
+
         }
       });
       return () => clearTimeout(jump);
     }
   }
-  // useEffect(() => {
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => window.removeEventListener("keydown", handleKeyDown);
-  // }, [state]);
   useEffect(() => {
-    window.addEventListener("keyup", handleKeyUp);
-    return () => window.removeEventListener("keyup", handleKeyUp);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [state]);
 
   useEffect(() => {
     const handle = setTimeout(() => {
-      let y = state.paddle1.y;
-      let dy = state.paddle1.dy;
-      let x = state.paddle1.x;
-      let dx = state.paddle1.dx;
-      let landed = state.paddle1.landed;
+      let y = state.player.y;
+      let dy = state.player.dy;
+      let x = state.player.x;
+      let dx = state.player.dx;
+      let landed = state.player.landed;
 
-      const paddle1 = {
+      const player = {
         y,
         dy,
         x,
@@ -137,22 +103,24 @@ export default function App() {
         height: 30,
         width: 30
       };
-
+      showObstacles(obstacles);
       const collisions = [...state.obstacles].map(ob => {
-        return willCollide(paddle1, ob);
+        ob.x = ob.x - 1;
+        return willCollide(player, ob);
       });
 
       // if (collisions.some(c => c.x)) {
       //   dx = -dx;
       // }
-      if (paddle1.landed === true) {
+      if (player.landed === true) {
         dy = 0;
         landed = false;
       }
       // bottom limit
-      if (y + state.paddle1.dy > 300 - 25) {
-        y = 275;
-      } else if (y + state.paddle1.dy < 0) {
+      if (player.y + player.dy + player.height > 300) {
+        //y = 275;
+        dy = 0;
+      } else if (y + state.player.dy < 0) {
         //top limit
         y = 0;
       } else {
@@ -162,15 +130,15 @@ export default function App() {
       dispatch({
         type: "RENDER",
         payload: {
-          paddle1: {
+          player: {
             y: y,
             dy: dy
           }
         }
       });
-    }, 50);
+    }, 25);
     return () => clearTimeout(handle);
-  }, [state.paddle1.y, state.paddle1.dy]);
+  }, [state.player.y, state.player.dy, state.scroll]);
 
   return (
     <GameProvider>
@@ -178,7 +146,7 @@ export default function App() {
         {state.obstacles.map(({ type, ...style }) => (
           <Obstacle type={type} style={style} />
         ))}
-        <Paddle paddleY={state.paddle1.y} />
+        <Paddle paddleY={state.player.y} />
       </div>
     </GameProvider>
   );
