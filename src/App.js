@@ -41,7 +41,6 @@ const initialState = {
   obstacles,
   displayBlocks,
   score: 0
-
 };
 
 function reducer(state, action) {
@@ -66,7 +65,8 @@ function reducer(state, action) {
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  // console.log(state.player.falling);
+  // console.log(state.player.jumping);
   function handleKeyDown(e) {
     if (
       e.keyCode === 32 &&
@@ -83,7 +83,6 @@ export default function App() {
             // dy: 5,
             falling: true,
             jumping: false
-
           }
         });
       }, 500);
@@ -91,13 +90,11 @@ export default function App() {
       dispatch({
         type: "MOVE_PLAYER",
         payload: {
-
           dy: -5,
           r: 90,
           falling: false,
           landed: false,
           jumping: true
-
         }
       });
       return () => clearTimeout(jump);
