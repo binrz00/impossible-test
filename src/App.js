@@ -25,6 +25,7 @@ const obstacles = level_one.reduce((acc, cur, y) => {
   }, []);
   return [...acc, ...blocks];
 }, []);
+const displayBlocks = [];
 const initialState = {
   player: {
     y: 200,
@@ -36,7 +37,8 @@ const initialState = {
     falling: true,
     jumping: false
   },
-  obstacles
+  obstacles,
+  displayBlocks
 };
 
 function reducer(state, action) {
@@ -139,10 +141,10 @@ export default function App() {
         height: 30,
         width: 30
       };
-      showObstacles(obstacles);
+      showObstacles(obstacles, displayBlocks);
       //const collisions = [...state.obstacles].map(ob => {
-      obstacles.map(ob => {
-        ob.x = ob.x - 1;
+      displayBlocks.map(ob => {
+        // ob.x = ob.x - 1;
         return willCollide(player, ob);
       });
 
@@ -188,7 +190,7 @@ export default function App() {
   return (
     <GameProvider>
       <div className="container">
-        {obstacles.map(({ type, ...style }) => (
+        {displayBlocks.map(({ type, ...style }) => (
           <Obstacle type={type} style={style} />
         ))}
         <Paddle movement={state.player} />
