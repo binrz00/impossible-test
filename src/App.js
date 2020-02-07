@@ -6,6 +6,7 @@ import Obstacle from "./components/Obstacle";
 import willCollide from "./utils/willCollide";
 import GameProvider from "./state/context";
 import showObstacles from "./utils/showObstacles";
+import Score from "./components/Score";
 const obstacles = level_one.reduce((acc, cur, y) => {
   const blocks = cur.split("").reduce((bs, b, x) => {
     if (b === " ") {
@@ -25,6 +26,7 @@ const obstacles = level_one.reduce((acc, cur, y) => {
   }, []);
   return [...acc, ...blocks];
 }, []);
+const displayBlocks = [];
 const initialState = {
   player: {
     y: 200,
@@ -36,7 +38,9 @@ const initialState = {
     falling: true,
     jumping: false
   },
-  obstacles
+  obstacles,
+  displayBlocks,
+  score: 0
 };
 
 function reducer(state, action) {
@@ -139,13 +143,13 @@ export default function App() {
         height: 30,
         width: 30
       };
-      showObstacles(obstacles);
+      showObstacles(obstacles, displayBlocks);
       //const collisions = [...state.obstacles].map(ob => {
-      obstacles.map(ob => {
-        ob.x = ob.x - 1;
+      displayBlocks.map(ob => {
+        // ob.x = ob.x - 1;
         return willCollide(player, ob);
       });
-
+      state.score += 1;
       // if (collisions.some(c => c.x)) {
       //   dx = -dx;
       // }
@@ -187,8 +191,9 @@ export default function App() {
 
   return (
     <GameProvider>
+      <Score score={state.score} />
       <div className="container">
-        {obstacles.map(({ type, ...style }) => (
+        {displayBlocks.map(({ type, ...style }) => (
           <Obstacle type={type} style={style} />
         ))}
         <Paddle movement={state.player} />
