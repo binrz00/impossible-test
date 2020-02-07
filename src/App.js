@@ -7,6 +7,7 @@ import willCollide from "./utils/willCollide";
 import GameProvider from "./state/context";
 import showObstacles from "./utils/showObstacles";
 import Score from "./components/Score";
+import reducer from "./state/reducer";
 const obstacles = level_one.reduce((acc, cur, y) => {
   const blocks = cur.split("").reduce((bs, b, x) => {
     if (b === " ") {
@@ -17,8 +18,8 @@ const obstacles = level_one.reduce((acc, cur, y) => {
       {
         type: b,
         dx: -1,
-        x: x * 10,
-        y: y * 10,
+        x: x * 30,
+        y: y * 30,
         width: 30,
         height: 30
       }
@@ -42,26 +43,6 @@ const initialState = {
   displayBlocks,
   score: 0
 };
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "MOVE_PLAYER":
-      return {
-        ...state,
-        player: {
-          ...state.player,
-          ...action.payload
-        }
-      };
-    case "RENDER":
-      return {
-        ...state,
-        player: { ...state.player, ...action.payload.player }
-      };
-    default:
-      throw new Error("Event not found: ", action.type);
-  }
-}
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -125,21 +106,9 @@ export default function App() {
     const handle = setTimeout(() => {
       let y = state.player.y;
       let dy = state.player.dy;
-      let x = state.player.x;
-      let dx = state.player.dx;
-      let landed = state.player.landed;
-      let r = state.player.r;
-      let falling = state.player.falling;
-      let jumping = state.player.jumping;
+
       const player = {
-        y,
-        dy,
-        x,
-        dx,
-        landed,
-        r,
-        falling,
-        jumping,
+        ...state.player,
         height: 30,
         width: 30
       };

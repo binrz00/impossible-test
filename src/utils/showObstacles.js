@@ -7,7 +7,7 @@ export default function showObstacles(obstacles, displayBlocks) {
   //   return displayBlocks;
   // });
   for (let i = 0; i < obstacles.length; i++) {
-    obstacles[i].x -= 2;
+    obstacles[i].x -= 4;
     if (obstacles[i].x < 570) {
       displayBlocks.push(obstacles[i]);
     }
