@@ -37,7 +37,10 @@ const initialState = {
     landed: false,
     r: 0,
     falling: true,
-    jumping: false
+    jumping: false,
+    alive: true,
+    width: 30,
+    height: 30
   },
   obstacles,
   displayBlocks,
@@ -46,22 +49,16 @@ const initialState = {
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // console.log(state.player.falling);
-  // console.log(state.player.jumping);
   function handleKeyDown(e) {
     if (
       e.keyCode === 32 &&
-      // state.player.falling === false &&
-      // state.player.dy !== -5 &&
       state.player.dy === 0 &&
       state.player.jumping === false
     ) {
-      // console.log("hello");
       const jump = setTimeout(() => {
         dispatch({
           type: "MOVE_PLAYER",
           payload: {
-            // dy: 5,
             falling: true,
             jumping: false
           }
@@ -81,77 +78,65 @@ export default function App() {
       return () => clearTimeout(jump);
     }
   }
-  // function handleKeyUp(e) {
-  //   if (e.keyCode === 32 && state.player.landed === false) {
-  //     dispatch({
-  //       type: "MOVE_PLAYER",
-  //       payload: {
-  //         r: 90,
-  //         //landed: false,
-  //         dy: 5
-  //       }
-  //     });
-  //   }
-  // }
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [state]);
-  // useEffect(() => {
-  //   window.addEventListener("keyup", handleKeyUp);
-  //   return () => window.removeEventListener("keyup", handleKeyUp);
-  // }, [state]);
 
   useEffect(() => {
-    const handle = setTimeout(() => {
-      let y = state.player.y;
-      let dy = state.player.dy;
+    if (state.playing === false) {
+      return;
+    }
+    if (state.player.alive === false) {
+      return dispatch({
+        type: "GAMEOVER",
+        payload: {}
+      });
+    }
 
+    const handle = setTimeout(() => {
       const player = {
         ...state.player,
         height: 30,
         width: 30
       };
-      showObstacles(obstacles, displayBlocks);
+      showObstacles(obstacles, displayBlocks, dispatch);
       //const collisions = [...state.obstacles].map(ob => {
       displayBlocks.map(ob => {
-        // ob.x = ob.x - 1;
-        return willCollide(player, ob);
+        return willCollide(state.player, ob, state.alive, dispatch);
       });
-      state.score += 1;
-      // if (collisions.some(c => c.x)) {
-      //   dx = -dx;
-      // }
-      // console.log(player.falling);
-      if (player.landed === true) {
-        dy = 0;
+
+      dispatch({
+        type: "UPDATE_SCORE",
+        payload: {
+          score: (state.score += 1)
+        }
+      });
+
+      if (state.player.landed === true) {
+        player.dy = 0;
         player.landed = false;
-        // player.falling = false;
       }
-      if (player.falling === true) {
-        dy = 5;
+      if (state.player.falling === true) {
+        player.dy = 5;
       }
       // bottom limit
-      if (player.y + 5 + player.height > 300) {
+      if (state.player.y + 5 + player.height > 300) {
         player.falling = false;
         player.jumping = false;
         player.landed = true;
-        //y = 275;
-        dy = 0;
-        // landed = false;
-      } else if (y + state.player.dy < 0) {
+        player.dy = 0;
+      } else if (state.player.y + state.player.dy < 0) {
         //top limit
-        y = 0;
+        player.y = 0;
       } else {
-        y = y + dy;
+        player.y = player.y + player.dy;
       }
+
       dispatch({
         type: "RENDER",
         payload: {
-          player: {
-            y: y,
-            dy: dy
-          }
+          player
         }
       });
     }, 25);
