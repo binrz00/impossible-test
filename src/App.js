@@ -17,8 +17,8 @@ const obstacles = level_one.reduce((acc, cur, y) => {
       {
         type: b,
         dx: -1,
-        x: x * 10,
-        y: y * 10,
+        x: x * 30,
+        y: y * 30,
         width: 30,
         height: 30
       }

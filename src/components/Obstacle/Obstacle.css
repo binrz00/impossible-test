@@ -6,7 +6,11 @@
 }
 
 .obstacle-1 {
-  background-color: red;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid red;
 }
 .obstacle-2 {
   background-color: green;

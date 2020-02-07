@@ -6,7 +6,9 @@ export default function willCollide(player, rect2) {
     player.x < rect2.x + rect2.width &&
     player.x + player.width > rect2.x
   ) {
+    //DEAD
   }
+
   // x collision
   // if (
   //   player.x + player.width === rect2.x &&
@@ -22,6 +24,9 @@ export default function willCollide(player, rect2) {
     player.x + player.width > rect2.x &&
     player.jumping === false
   ) {
+    if (rect2.type === "1") {
+      //DEAD
+    }
     player.landed = true;
     player.falling = false;
     // player.jumping = false;
