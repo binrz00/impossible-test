@@ -1,12 +1,12 @@
 export default function willCollide(player, rect2) {
   let x = false;
   let y = false;
-
   if (
     rect2.y < player.y + 29 &&
     player.x < rect2.x + rect2.width &&
     player.x + player.width > rect2.x
   ) {
+    //DEAD
   }
 
   // x collision
@@ -21,11 +21,12 @@ export default function willCollide(player, rect2) {
   if (
     rect2.y < player.y + 5 + player.height &&
     player.x < rect2.x + rect2.width &&
-
     player.x + player.width > rect2.x &&
     player.jumping === false
-
   ) {
+    if (rect2.type === "1") {
+      //DEAD
+    }
     player.landed = true;
     player.falling = false;
     // player.jumping = false;
@@ -45,3 +46,4 @@ export default function willCollide(player, rect2) {
   // console.log("falling", player.falling);
   return { x, y, player };
 }
+
