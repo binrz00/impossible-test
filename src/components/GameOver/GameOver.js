@@ -6,6 +6,7 @@ export default function GameOver(props) {
   const [typing, setTyping] = useState(true);
   const [HighScores, setHighScores] = useState([]);
   function postScore(name) {
+    console.log("works");
     axios
       .post("http://localhost:5000/api/v1/high-scores", {
         name,
