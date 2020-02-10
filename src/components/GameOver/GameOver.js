@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Button } from "grommet";
 import "./GameOver.css";
 
 export default function GameOver(props) {
@@ -8,7 +9,7 @@ export default function GameOver(props) {
   function postScore(name) {
     console.log("works");
     axios
-      .post("http://localhost:5000/api/v1/high-scores", {
+      .post(process.env.REACT_APP_URL + "/api/v1/high-scores", {
         name,
         score: props.score
       })
@@ -19,7 +20,7 @@ export default function GameOver(props) {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/v1/high-scores").then(res => {
+    axios.get(process.env.REACT_APP_URL + "/api/v1/high-scores").then(res => {
       res.data.highScores.sort((a, b) => (a.score < b.score ? 1 : -1));
 
       if (res.data.highScores.length > 10) {
@@ -36,14 +37,13 @@ export default function GameOver(props) {
           <h1>congratulations your score was {props.score}</h1>
           <p>what name would you like to display?</p>
           <input id="name" />
-          <button
+          <Button
+            label="Submit"
             onClick={() => {
               const user = document.getElementById("name");
               postScore(user.value);
             }}
-          >
-            submit
-          </button>
+          />
         </div>
       )}
       {!typing && (
@@ -56,13 +56,12 @@ export default function GameOver(props) {
               </li>
             ))}
           </ol>
-          <button
+          <Button
+            label="back to dash"
             onClick={() => {
               window.location.reload();
             }}
-          >
-            try again
-          </button>
+          />
         </div>
       )}
     </>

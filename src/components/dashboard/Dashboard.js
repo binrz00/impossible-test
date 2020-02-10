@@ -13,24 +13,6 @@ export default function Dashboard({ history }) {
     my: [],
     open: []
   });
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     fetch(`/api/v1/games/my-games/${user.id}`)
-  //       .then(res => res.json())
-  //       .then(res1 => {
-  //         fetch(`/api/v1/games/open-games`)
-  //           .then(res => res.json())
-  //           .then(res2 => {
-  //             console.log(res1);
-  //             console.log(res2);
-  //             setGames({
-  //               my: res1.games,
-  //               open: res2.games
-  //             });
-  //           });
-  //       });
-  //   }, 1000);
-  // }, []);
 
   return (
     <>
