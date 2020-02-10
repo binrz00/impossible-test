@@ -20,7 +20,7 @@ export default function GameOver(props) {
     setTyping(false);
   }
   function newGame() {
-    window.location.reload(false);
+    window.location.reload();
   }
 
   useEffect(() => {
