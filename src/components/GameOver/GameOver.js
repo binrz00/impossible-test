@@ -5,10 +5,10 @@ import "./GameOver.css";
 export default function GameOver(props) {
   const [typing, setTyping] = useState(true);
   const [HighScores, setHighScores] = useState([]);
-  function postScore(initials) {
+  function postScore(name) {
     axios
       .post("http://localhost:5000/api/v1/high-scores", {
-        initials,
+        name,
         score: props.score
       })
       .then(res => {
@@ -22,7 +22,7 @@ export default function GameOver(props) {
       res.data.highScores.sort((a, b) => (a.score < b.score ? 1 : -1));
 
       if (res.data.highScores.length > 10) {
-        res.data.highScores.pop();
+        res.data.highScores.pop(res.data.highScores.length - 11);
       }
       setHighScores(res.data.highScores);
     });
@@ -33,11 +33,11 @@ export default function GameOver(props) {
       {typing && (
         <div>
           <h1>congratulations your score was {props.score}</h1>
-          <p>what are your initials?</p>
-          <input id="initials" />
+          <p>what name would you like to display?</p>
+          <input id="name" />
           <button
             onClick={() => {
-              const user = document.getElementById("initials");
+              const user = document.getElementById("name");
               postScore(user.value);
             }}
           >
@@ -49,12 +49,19 @@ export default function GameOver(props) {
         <div>
           <h1>High Scores</h1>
           <ol>
-            {HighScores.map(({ initials, score }) => (
+            {HighScores.map(({ name, score }) => (
               <li>
-                {initials}: {score}
+                {name}: {score}
               </li>
             ))}
           </ol>
+          <button
+            onClick={() => {
+              window.location.reload();
+            }}
+          >
+            try again
+          </button>
         </div>
       )}
     </>
