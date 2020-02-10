@@ -19,16 +19,14 @@ export default function GameOver(props) {
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/v1/high-scores").then(res => {
-      // let tops = [];
-      // res.data.highScores.map(score => {
-      //   tops.push(score.score);
-      //   return tops;
-      // });
-      // console.log(tops);
-      // console.log(tops.sort());
+      res.data.highScores.sort((a, b) => (a.score < b.score ? 1 : -1));
+
+      if (res.data.highScores.length > 10) {
+        res.data.highScores.pop();
+      }
       setHighScores(res.data.highScores);
     });
-  }, []);
+  }, [HighScores]);
 
   return (
     <>
