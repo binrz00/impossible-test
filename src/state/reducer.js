@@ -36,17 +36,6 @@ export default function reducer(state, action) {
         score: action.payload.score
       };
     case "GAMEOVER":
-      const initials = prompt(
-        "GAME OVER, YOUR SCORE WAS: " + state.score + " ENTER YOUR INITIALS"
-      );
-      axios
-        .post("http://localhost:5000/api/v1/high-scores", {
-          initials,
-          score: state.score
-        })
-        .then(res => {
-          console.log(res);
-        });
       return {
         ...state,
         playing: false
