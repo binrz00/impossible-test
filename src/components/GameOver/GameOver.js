@@ -56,7 +56,7 @@ export default function GameOver(props) {
               </li>
             ))}
           </ol>
-          <a href={process.env.REACT_APP_URL + "/dashboard"}>
+          <a href={process.env.DASHBOARD}>
             <Button label="back to dash" />
           </a>
         </div>
