@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "grommet";
 import "./GameOver.css";
-import { navajowhite } from "color-name";
 
 export default function GameOver(props) {
   const [typing, setTyping] = useState(true);
@@ -20,7 +19,10 @@ export default function GameOver(props) {
     setTyping(false);
   }
   function newGame() {
-    window.location.reload();
+    props.dispatch({
+      type: "NEW_GAME",
+      payload: {}
+    });
   }
 
   useEffect(() => {
@@ -60,7 +62,7 @@ export default function GameOver(props) {
               </li>
             ))}
           </ol>
-          <Button label="back to dash" onClick={newGame} />
+          <Button label="Try Again" onClick={newGame} />
         </div>
       )}
     </>
