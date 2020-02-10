@@ -67,7 +67,7 @@ export default function Game() {
             jumping: false
           }
         });
-      }, 500);
+      }, 600);
 
       dispatch({
         type: "MOVE_PLAYER",
@@ -107,7 +107,7 @@ export default function Game() {
       //showObstacles(obstacles, displayBlocks, dispatch);
       //const collisions = [...state.obstacles].map(ob => {
       state.obstacles.map(ob => {
-        ob.x += -4;
+        ob.x += -6;
         return willCollide(state.player, ob, state.alive, dispatch);
       });
 
