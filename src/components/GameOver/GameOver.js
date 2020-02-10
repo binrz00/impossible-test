@@ -28,10 +28,7 @@ export default function GameOver(props) {
   useEffect(() => {
     axios.get(process.env.REACT_APP_URL + "/api/v1/high-scores").then(res => {
       res.data.highScores.sort((a, b) => (a.score < b.score ? 1 : -1));
-
-      if (res.data.highScores.length > 10) {
-        res.data.highScores.pop(res.data.highScores.length - 11);
-      }
+      res.data.highScores.slice(0, 10);
       setHighScores(res.data.highScores);
     });
   }, [HighScores]);
