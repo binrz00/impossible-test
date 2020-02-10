@@ -59,7 +59,7 @@ export default function GameOver(props) {
           <Button
             label="back to dash"
             onClick={() => {
-              window.location.reload();
+              window.location.href.reload();
             }}
           />
         </div>
