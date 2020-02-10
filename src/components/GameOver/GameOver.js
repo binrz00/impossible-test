@@ -56,12 +56,9 @@ export default function GameOver(props) {
               </li>
             ))}
           </ol>
-          <Button
-            label="back to dash"
-            onClick={() => {
-              window.location.href.reload();
-            }}
-          />
+          <a href={process.env.REACT_APP_URL + "/dashboard"}>
+            <Button label="back to dash" />
+          </a>
         </div>
       )}
     </>
