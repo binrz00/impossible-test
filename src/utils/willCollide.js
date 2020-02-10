@@ -6,6 +6,9 @@ export default function willCollide(player, rect2) {
   ) {
     player.alive = false;
   }
+  if (player.y + 5 > 270) {
+    player.alive = false;
+  }
   if (
     rect2.y < player.y + 5 + player.height &&
     player.x < rect2.x + rect2.width &&
