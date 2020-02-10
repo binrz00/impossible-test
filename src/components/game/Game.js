@@ -161,7 +161,7 @@ export default function Game() {
           </div>
         </div>
       )}
-      {!state.playing && <GameOver score={state.score} />}
+      {!state.playing && <GameOver score={state.score} dispatch={dispatch} />}
     </>
   );
 }

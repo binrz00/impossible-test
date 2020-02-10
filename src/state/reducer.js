@@ -40,6 +40,8 @@ export default function reducer(state, action) {
         ...state,
         playing: false
       };
+    case "NEW_GAME":
+      return {};
 
     // console.log(res);
 

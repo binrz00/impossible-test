@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "grommet";
 import "./GameOver.css";
+import { navajowhite } from "color-name";
 
 export default function GameOver(props) {
   const [typing, setTyping] = useState(true);
@@ -17,6 +18,9 @@ export default function GameOver(props) {
         console.log(res);
       });
     setTyping(false);
+  }
+  function newGame() {
+    window.location.reload(false);
   }
 
   useEffect(() => {
@@ -56,9 +60,7 @@ export default function GameOver(props) {
               </li>
             ))}
           </ol>
-          <a href="https://keen-swirles-dc6948.netlify.com/game">
-            <Button label="back to dash" />
-          </a>
+          <Button label="back to dash" onClick={newGame} />
         </div>
       )}
     </>
