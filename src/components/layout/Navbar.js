@@ -4,14 +4,16 @@ import { Box } from "grommet";
 
 export default function() {
   return (
-    <Box direction="row" background="brand" pad="medium">
+    <Box direction="row" pad="medium">
       <nav>
         <div>
           <Link
             to="/"
             style={{
               fontFamily: "monospace",
-              color: "white"
+              color: "white",
+              fontSize: "30px",
+              fontWeight: "bold"
             }}
           >
             Login

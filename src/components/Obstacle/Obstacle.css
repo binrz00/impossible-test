@@ -1,8 +1,8 @@
 .obstacle {
-  /* border: 2px solid #fff; */
+  border: 2px solid;
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
 }
 
 .obstacle-1 {
@@ -10,11 +10,12 @@
   height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 30px solid red;
+  border-bottom: 30px solid rgba(0, 255, 255, 0.932);
 }
 .obstacle-2 {
   background-color: green;
 }
 .obstacle-3 {
-  background-color: black;
+  border: 2px solid #ee18bd;
+  background-color: #8b08b6;
 }

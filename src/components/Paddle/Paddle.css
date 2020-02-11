@@ -1,4 +1,6 @@
 .paddle {
+  display: flex;
+  flex-wrap: wrap;
   height: 30px;
   width: 30px;
   border-radius: 3px;
@@ -6,11 +8,29 @@
   left: 60px;
   top: 50%;
 }
-.wood {
-  max-width: 100%;
-  max-height: 100%;
-  display: block;
+.top-right {
+  background-color: aqua;
+  height: 15px;
+  width: 15px;
 }
+.top-left {
+  background-color: #fdd909;
+  height: 15px;
+  width: 15px;
+}
+
+.bottom-right {
+  height: 15px;
+  width: 15px;
+  background-color: #ee18bd;
+}
+
+.bottom-left {
+  height: 15px;
+  width: 15px;
+  background-color: #8b08b6;
+}
+
 .pic {
-  transition: transform 500ms ease-in;
+  transition: transform 400ms ease-in;
 }

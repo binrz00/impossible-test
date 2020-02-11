@@ -16,18 +16,17 @@ class Paddle extends React.Component {
           transform: `rotate(${this.props.movement.r}deg)`
         }}
       >
-        <img
-          className="wood"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRJF2XAegilavKuCg_o3s8ZTbgEdNOBcu7COJtl9JSX2f_Az2EB"
-          alt="wood"
-        />
+        <div className="top-right" />
+        <div className="top-left" />
+        <div className="bottom-right" />
+        <div className="bottom-left" />
       </div>
     );
     return (
       <ReactCSSTransitionGroup
         transitionName="pic"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
+        transitionEnterTimeout={400}
+        transitionLeaveTimeout={400}
       >
         {test}
       </ReactCSSTransitionGroup>
