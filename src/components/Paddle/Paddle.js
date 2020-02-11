@@ -17,6 +17,7 @@ class Paddle extends React.Component {
         }}
       >
         <img
+          className="wood"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRJF2XAegilavKuCg_o3s8ZTbgEdNOBcu7COJtl9JSX2f_Az2EB"
           alt="wood"
         />
