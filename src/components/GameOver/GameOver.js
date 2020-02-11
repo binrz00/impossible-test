@@ -34,8 +34,11 @@ export default function GameOver(props) {
       );
       const topTen = sorted.slice(0, 10);
       setHighScores(topTen);
+      if (topTen[topTen.length - 1].score > props.score && topTen.length > 9) {
+        setTyping(false);
+      }
     });
-  }, [HighScores]);
+  }, [HighScores, props.score]);
 
   return (
     <>
