@@ -9,6 +9,7 @@ import reducer from "../../state/reducer";
 import GameOver from "../GameOver";
 import PropTypes from "prop-types";
 
+const pic = document.getElementById("pic");
 const obstacles = level_one.reduce((acc, cur, y) => {
   const blocks = cur.split("").reduce((bs, b, x) => {
     if (b === " ") {
@@ -52,6 +53,13 @@ const initialState = {
 export default function Game() {
   const [state, dispatch] = useReducer(reducer, initialState);
   function handleKeyDown(e) {
+    // $('.button').keypress(function(e){
+    //   if(e.which == 13){
+    //       $(this).css('background-color','#FFF');
+    //   }
+    // });
+    console.log(document.getElementById("pic").style);
+    // pic.css("background-color", "red");
     if (
       e.keyCode === 32 &&
       state.player.dy === 0 &&

@@ -4,6 +4,7 @@ import "./Paddle.css";
 export default function Paddle({ movement }) {
   return (
     <div
+      id="pic"
       className="paddle"
       style={{
         top: `${movement.y}px`,

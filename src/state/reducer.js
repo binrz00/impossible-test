@@ -1,4 +1,3 @@
-import axios from "axios";
 import { level_one } from "../levels";
 export default function reducer(state, action) {
   switch (action.type) {
