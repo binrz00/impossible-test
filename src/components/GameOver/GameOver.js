@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Button } from "grommet";
+import { AuthContext } from "../../auth/auth";
 import "./GameOver.css";
 
 export default function GameOver(props) {
+  const { user } = useContext(AuthContext);
   const [typing, setTyping] = useState(true);
   const [HighScores, setHighScores] = useState([]);
   function postScore(name) {
@@ -39,7 +41,10 @@ export default function GameOver(props) {
     <>
       {typing && (
         <div>
-          <h1>congratulations your score was {props.score}</h1>
+          <h1>
+            congratulations {user.name.split(" ")[0]}! your score was{" "}
+            {props.score}
+          </h1>
           <p>what name would you like to display?</p>
           <input id="name" />
           <Button

@@ -1,18 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Box, Button } from "grommet";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import axios from "axios";
-
 import { AuthContext } from "../../auth/auth";
 
-export default function Dashboard({ history }) {
+export default function Dashboard() {
   const { user, logoutUser } = useContext(AuthContext);
-
-  const [games, setGames] = useState({
-    my: [],
-    open: []
-  });
 
   return (
     <>

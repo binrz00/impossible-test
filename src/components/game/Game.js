@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useContext } from "react";
+import React, { useReducer, useEffect } from "react";
 import "./game.css";
 import Paddle from "../Paddle";
 import { level_one } from "../../levels";
@@ -8,7 +8,6 @@ import Score from "../Score";
 import reducer from "../../state/reducer";
 import GameOver from "../GameOver";
 import PropTypes from "prop-types";
-import { AuthContext } from "../../auth/auth";
 
 const obstacles = level_one.reduce((acc, cur, y) => {
   const blocks = cur.split("").reduce((bs, b, x) => {
@@ -51,7 +50,6 @@ const initialState = {
 };
 
 export default function Game() {
-  const { user, logoutUser } = useContext(AuthContext);
   const [state, dispatch] = useReducer(reducer, initialState);
   function handleKeyDown(e) {
     if (
@@ -67,13 +65,13 @@ export default function Game() {
             jumping: false
           }
         });
-      }, 600);
+      }, 550);
 
       dispatch({
         type: "MOVE_PLAYER",
         payload: {
           dy: -5,
-          r: 90,
+          r: state.player.r + 90,
           falling: false,
           landed: false,
           jumping: true
@@ -107,7 +105,7 @@ export default function Game() {
       //showObstacles(obstacles, displayBlocks, dispatch);
       //const collisions = [...state.obstacles].map(ob => {
       state.obstacles.map(ob => {
-        ob.x += -6;
+        ob.x += -5;
         return willCollide(state.player, ob, state.alive, dispatch);
       });
 
