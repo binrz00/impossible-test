@@ -7,13 +7,11 @@ export default function() {
     <div style={{ height: "75vh" }}>
       <Box align="center" justify="center">
         <h4>
-          <b>Build</b> a login/auth app with the{" "}
-          <span style={{ fontFamily: "monospace" }}>MERN</span> stack from
-          scratch
+          <b>Welcome to fun games.com</b>
         </h4>
         <p>
-          Create a (minimal) full-stack app with user authentication via
-          passport and JWTs
+          <b>Log in to start gaming</b>
+          new to fun games? signing up is free!
         </p>
         <br />
         <div>

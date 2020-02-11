@@ -14,7 +14,7 @@ export default function() {
               color: "white"
             }}
           >
-            MERN
+            Login
           </Link>
         </div>
       </nav>

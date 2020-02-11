@@ -21,11 +21,8 @@ export default function Dashboard() {
         <Box direction="row" align="center" justify="center">
           <div>
             <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
-              <p>
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
+              <b>Hello,</b> {user.name.split(" ")[0]}
+              <p>Welcome back to Gamer Weekly's 2025 top gaming site!</p>
             </h4>
 
             <Button
