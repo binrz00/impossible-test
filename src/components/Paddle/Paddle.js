@@ -25,8 +25,8 @@ class Paddle extends React.Component {
     return (
       <ReactCSSTransitionGroup
         transitionName="pic"
-        transitionEnterTimeout={400}
-        transitionLeaveTimeout={400}
+        transitionEnterTimeout={700}
+        transitionLeaveTimeout={700}
       >
         {test}
       </ReactCSSTransitionGroup>

@@ -70,7 +70,7 @@ export default function Game() {
         type: "MOVE_PLAYER",
         payload: {
           dy: -5,
-          r: state.player.r + 90,
+          r: state.player.r + 450,
           falling: false,
           landed: false,
           jumping: true
