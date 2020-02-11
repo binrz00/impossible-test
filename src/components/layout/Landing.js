@@ -11,7 +11,8 @@ export default function() {
         </h4>
         <p>
           <b>Log in to start gaming</b>
-          new to fun games? signing up is free!
+          <br />
+          <b>new to fun games? signing up is free!</b>
         </p>
         <br />
         <div>

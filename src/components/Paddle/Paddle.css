@@ -10,15 +10,7 @@ img {
   max-width: 100%;
   max-height: 100%;
   display: block;
-  -webkit-transition: 1s ease-in-out;
-  -moz-transition: 1s ease-in-out;
-  -o-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
 }
-img:hover {
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
+.pic {
+  transition: transform 500ms ease-in;
 }
