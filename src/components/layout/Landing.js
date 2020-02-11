@@ -17,19 +17,19 @@ export default function() {
         }}
       >
         <h1 alignSelf="center" textColor="white">
-          <b class="fun">Welcome to fun games.com</b>
+          <b class="fun">A E S T H E T I C G A M E S</b>
         </h1>
-        <br />
-        <br />
-        <b alignSelf="center">
-          Registered already? You know the drill, log in to start gaming you
-          glorious gamer
-        </b>
         <br />
         <br />
         <b alignSelf="center">
           Not registered? Do you like mediocre games built in React js? Sign up!
           Its free!
+        </b>
+        <br />
+        <br />
+        <b alignSelf="center">
+          Registered already? You know the drill, log in to start gaming you
+          glorious gamer
         </b>
 
         <br />

@@ -43,14 +43,33 @@ export default function GameOver(props) {
   return (
     <>
       {loser && (
-        <div>
+        <div className="enter">
           <h1>
-            congratulations {user.name.split(" ")[0]}! your score was{" "}
-            {props.score}
+            congratulations {user.name.split(" ")[0]}! <br />
+            <br />
+            your score was {props.score}
           </h1>
-          <p>what name would you like to display?</p>
-          <input id="name" />
+          <h3>what name would you like to display?</h3>
+          <input
+            id="name"
+            style={{
+              color: "white",
+              marginRight: "10px",
+              border: "1px solid white",
+              borderRadius: "3px",
+              letterSpacing: "1px",
+              lineHeight: "30px",
+              background: "rgba(0, 0, 0, 0.4)"
+            }}
+          />
           <Button
+            style={{
+              border: "1px solid white",
+              borderRadius: "3px",
+              letterSpacing: "1px",
+              background: "rgba(1, 0, 0, 0.4)",
+              color: "white"
+            }}
             label="Submit"
             onClick={() => {
               const user = document.getElementById("name");
@@ -60,20 +79,38 @@ export default function GameOver(props) {
         </div>
       )}
       {!loser && (
-        <div>
-          <h1>
-            congratulations {user.name.split(" ")[0]}! your score was{" "}
-            {props.score}
-          </h1>
+        <div className="enter">
+          <br />
+          <h2>Congratulations {user.name.split(" ")[0]}! </h2>
+          <h2> your score was {props.score}</h2>
+
           <h1>High Scores</h1>
-          <ol>
+          <ol
+            style={{
+              border: "1px solid white",
+              borderRadius: "3px",
+              letterSpacing: "1px",
+              background: "rgba(0, 0, 0, 0.4)",
+              width: "15%"
+            }}
+          >
             {HighScores.map(({ name, score }) => (
-              <li>
+              <li className="scores">
                 {name}: {score}
               </li>
             ))}
           </ol>
-          <Button label="Try Again" onClick={newGame} />
+          <Button
+            style={{
+              border: "1px solid white",
+              borderRadius: "3px",
+              letterSpacing: "1px",
+              background: "rgba(1, 0, 0, 0.4)",
+              color: "white"
+            }}
+            label="Try Again"
+            onClick={newGame}
+          />
         </div>
       )}
     </>

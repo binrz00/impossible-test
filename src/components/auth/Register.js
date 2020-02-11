@@ -21,17 +21,49 @@ export default function Register({ history }) {
   }, [user, history]);
 
   return (
-    <Box justify="center" align="center" style={{ marginTop: "4rem" }}>
-      <Link to="/">Back to home</Link>
-      <div style={{ paddingLeft: "11.250px" }}>
-        <h4>
-          <b>Register</b> below
-        </h4>
-        <p>
+    <Box
+      justify="center"
+      align="center"
+      style={{ marginTop: "4rem", padding: "20px", color: "white" }}
+    >
+      <Link
+        style={{
+          // width: "140px",
+          borderRadius: "3px",
+          letterSpacing: "1.5px",
+          color: "white",
+          fontSize: "30px",
+          fontWeight: "bold"
+        }}
+        to="/"
+      >
+        Back to home
+      </Link>
+      <div
+        style={{
+          borderRadius: "3px",
+          letterSpacing: "1.5px",
+          color: "white",
+          fontSize: "30px",
+          fontWeight: "bold"
+        }}
+      >
+        <br />
+        {/* <h4>
+          <b>Register</b>
+        </h4> */}
+        {/* <p>
           Already have an account? <Link to="/login">Log in</Link>
-        </p>
+        </p> */}
       </div>
       <form
+        style={{
+          border: "2px solid white",
+          borderRadius: "3px",
+          letterSpacing: "1px",
+          padding: "10px"
+          // background: "rgba(0, 0, 0, 0.4)"
+        }}
         noValidate
         onSubmit={e => {
           e.preventDefault();
@@ -46,10 +78,24 @@ export default function Register({ history }) {
           registerUser(newUser, history);
         }}
       >
+        <p
+          align="center"
+          style={{
+            fontWeight: "bold"
+          }}
+        >
+          REGISTER
+        </p>
         <div>
-          <FormField label="Name">
+          <FormField>
             <TextInput
-              placeholder="type here"
+              style={{
+                border: "1px solid white",
+                borderRadius: "3px",
+                letterSpacing: "1px",
+                background: "rgba(0, 0, 0, 0.4)"
+              }}
+              placeholder="Name"
               onChange={event => setName(event.target.value)}
               value={name}
               error={errors.name}
@@ -60,12 +106,18 @@ export default function Register({ history }) {
               })}
             />
           </FormField>
-          <span style={{ color: "red" }}>{errors.name}</span>
+          <span style={{ color: "white" }}>{errors.name}</span>
         </div>
         <div>
-          <FormField label="Email">
+          <FormField>
             <TextInput
-              placeholder="type here"
+              style={{
+                border: "1px solid white",
+                borderRadius: "3px",
+                letterSpacing: "1px",
+                background: "rgba(0, 0, 0, 0.4)"
+              }}
+              placeholder="Email"
               onChange={event => setEmail(event.target.value)}
               value={email}
               error={errors.email}
@@ -76,12 +128,18 @@ export default function Register({ history }) {
               })}
             />
           </FormField>
-          <span style={{ color: "red" }}>{errors.email}</span>
+          <span style={{ color: "white" }}>{errors.email}</span>
         </div>
         <div>
-          <FormField label="Password">
+          <FormField>
             <TextInput
-              placeholder="type here"
+              style={{
+                border: "1px solid white",
+                borderRadius: "3px",
+                letterSpacing: "1px",
+                background: "rgba(0, 0, 0, 0.4)"
+              }}
+              placeholder="Password"
               onChange={event => setPassword(event.target.value)}
               value={password}
               error={errors.password}
@@ -92,12 +150,18 @@ export default function Register({ history }) {
               })}
             />
           </FormField>
-          <span style={{ color: "red" }}>{errors.password}</span>
+          <span style={{ color: "white" }}>{errors.password}</span>
         </div>
         <div>
-          <FormField label="Confirm Password">
+          <FormField>
             <TextInput
-              placeholder="type here"
+              style={{
+                border: "1px solid white",
+                borderRadius: "3px",
+                letterSpacing: "1px",
+                background: "rgba(0, 0, 0, 0.4)"
+              }}
+              placeholder="Confirm Password"
               onChange={event => setPassword2(event.target.value)}
               value={password2}
               error={errors.password2}
@@ -108,10 +172,20 @@ export default function Register({ history }) {
               })}
             />
           </FormField>
-          <span style={{ color: "red" }}>{errors.password2}</span>
+          <span style={{ color: "white" }}>{errors.password2}</span>
         </div>
-        <div style={{ paddingLeft: "11.250px" }}>
-          <Button type="submit" label="Sign up" />
+        <div align="center">
+          <Button
+            style={{
+              border: "1px solid white",
+              borderRadius: "3px",
+              letterSpacing: "1px",
+              background: "rgba(1, 0, 0, 0.4)",
+              color: "white"
+            }}
+            type="submit"
+            label="Sign Up"
+          />
         </div>
       </form>
     </Box>

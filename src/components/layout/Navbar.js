@@ -16,7 +16,7 @@ export default function() {
               fontWeight: "bold"
             }}
           >
-            Login
+            HOME
           </Link>
         </div>
       </nav>

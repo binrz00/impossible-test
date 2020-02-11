@@ -19,17 +19,49 @@ export default function Login({ history }) {
   }, [user, history]);
 
   return (
-    <Box justify="center" align="center" style={{ marginTop: "4rem" }}>
-      <Link to="/">Back to home</Link>
-      <div style={{ paddingLeft: "11.250px" }}>
-        <h4>
-          <b>Login</b> below
-        </h4>
-        <p>
+    <Box
+      justify="center"
+      align="center"
+      style={{ marginTop: "4rem", padding: "20px", color: "white" }}
+    >
+      <Link
+        style={{
+          // width: "140px",
+          borderRadius: "3px",
+          letterSpacing: "1.5px",
+          color: "white",
+          fontSize: "30px",
+          fontWeight: "bold"
+        }}
+        to="/"
+      >
+        Back to Home
+      </Link>
+
+      <div
+        style={{
+          borderRadius: "3px",
+          letterSpacing: "1.5px",
+          borderColor: "white"
+          // paddingLeft: "11.250px"
+        }}
+      >
+        {/* <h4>
+          <b style={{ textDecoration: "underline" }}>Log In</b>
+        </h4> */}
+        <br />
+        {/* <p>
           Don't have an account? <Link to="/register">Register</Link>
-        </p>
+        </p> */}
       </div>
       <form
+        style={{
+          border: "2px solid white",
+          borderRadius: "3px",
+          letterSpacing: "1px",
+          padding: "10px"
+          // background: "rgba(0, 0, 0, 0.4)"
+        }}
         noValidate
         onSubmit={e => {
           e.preventDefault();
@@ -42,10 +74,24 @@ export default function Login({ history }) {
           loginUser(userData);
         }}
       >
+        <p
+          align="center"
+          style={{
+            fontWeight: "bold"
+          }}
+        >
+          LOG IN
+        </p>
         <div>
-          <FormField label="Email">
+          <FormField>
             <TextInput
-              placeholder="type here"
+              style={{
+                border: "1px solid white",
+                borderRadius: "3px",
+                letterSpacing: "1px",
+                background: "rgba(0, 0, 0, 0.4)"
+              }}
+              placeholder="Email"
               onChange={e => setEmail(e.target.value)}
               value={email}
               error={errors.email}
@@ -57,15 +103,21 @@ export default function Login({ history }) {
             />
           </FormField>
 
-          <span style={{ color: "red" }}>
+          <span style={{ color: "white" }}>
             {errors.email}
             {errors.emailnotfound}
           </span>
         </div>
         <div>
-          <FormField label="Password">
+          <FormField>
             <TextInput
-              placeholder="type here"
+              style={{
+                border: "1px solid white",
+                borderRadius: "3px",
+                letterSpacing: "1px",
+                background: "rgba(0, 0, 0, 0.4)"
+              }}
+              placeholder="Password"
               onChange={e => setPassword(e.target.value)}
               value={password}
               error={errors.password}
@@ -77,13 +129,25 @@ export default function Login({ history }) {
             />
           </FormField>
 
-          <span style={{ color: "red" }}>
+          <span style={{ color: "white" }}>
             {errors.password}
             {errors.passwordincorrect}
           </span>
         </div>
-        <div style={{ paddingLeft: "11.250px" }}>
-          <Button type="submit" label="login" />
+        <div align="center">
+          <Button
+            style={{
+              border: "1px solid white",
+              borderRadius: "3px",
+              letterSpacing: "1px",
+              background: "rgba(1, 0, 0, 0.4)",
+              color: "white"
+            }}
+            type="submit"
+            label="login"
+            justify="center"
+            align="center"
+          />
         </div>
       </form>
     </Box>
