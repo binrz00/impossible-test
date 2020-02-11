@@ -6,7 +6,7 @@ import "./GameOver.css";
 
 export default function GameOver(props) {
   const { user } = useContext(AuthContext);
-  const [typing, setTyping] = useState(true);
+  const [loser, setLoser] = useState(true);
   const [HighScores, setHighScores] = useState([]);
   function postScore(name) {
     console.log("works");
@@ -18,7 +18,7 @@ export default function GameOver(props) {
       .then(res => {
         console.log(res);
       });
-    setTyping(false);
+    setLoser(false);
   }
   function newGame() {
     props.dispatch({
@@ -35,14 +35,14 @@ export default function GameOver(props) {
       const topTen = sorted.slice(0, 10);
       setHighScores(topTen);
       if (topTen[topTen.length - 1].score > props.score && topTen.length > 9) {
-        setTyping(false);
+        setLoser(false);
       }
     });
   }, [HighScores, props.score]);
 
   return (
     <>
-      {typing && (
+      {loser && (
         <div>
           <h1>
             congratulations {user.name.split(" ")[0]}! your score was{" "}
@@ -59,8 +59,12 @@ export default function GameOver(props) {
           />
         </div>
       )}
-      {!typing && (
+      {!loser && (
         <div>
+          <h1>
+            congratulations {user.name.split(" ")[0]}! your score was{" "}
+            {props.score}
+          </h1>
           <h1>High Scores</h1>
           <ol>
             {HighScores.map(({ name, score }) => (

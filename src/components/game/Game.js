@@ -53,13 +53,12 @@ const initialState = {
 export default function Game() {
   const [state, dispatch] = useReducer(reducer, initialState);
   function handleKeyDown(e) {
-    // $('.button').keypress(function(e){
-    //   if(e.which == 13){
-    //       $(this).css('background-color','#FFF');
-    //   }
-    // });
-    console.log(document.getElementById("pic").style);
-    // pic.css("background-color", "red");
+    //rotation animation
+
+    // document.getElementById("pic").style.transform = `rotate(${
+    //   state.player.r
+    // }deg)`;
+
     if (
       e.keyCode === 32 &&
       state.player.dy === 0 &&
