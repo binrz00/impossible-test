@@ -64,7 +64,7 @@ export default function Game() {
             jumping: false
           }
         });
-      }, 550);
+      }, 600);
 
       dispatch({
         type: "MOVE_PLAYER",
@@ -141,7 +141,7 @@ export default function Game() {
           player
         }
       });
-    }, 50);
+    }, 25);
     return () => clearTimeout(handle);
   }, [state]);
 
