@@ -64,13 +64,13 @@ export default function Game() {
             jumping: false
           }
         });
-      }, 600);
+      }, 550);
 
       dispatch({
         type: "MOVE_PLAYER",
         payload: {
           dy: -5,
-          r: state.player.r + 450,
+          r: state.player.r + 90,
           falling: false,
           landed: false,
           jumping: true
