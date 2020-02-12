@@ -14,22 +14,7 @@ export default function reducer(state, action) {
         ...state,
         player: { ...state.player, ...action.payload.player }
       };
-    case "UPDATE_OBSTACLES":
-      return {
-        ...state,
-        obstacles: {
-          ...state.obstacles,
-          ...action.payload
-        }
-      };
-    case "UPDATE_DISPLAYBLOCKS":
-      return {
-        ...state,
-        displayBlocks: {
-          ...state.displayBlocks,
-          ...action.payload
-        }
-      };
+
     case "UPDATE_SCORE":
       return {
         ...state,

@@ -82,7 +82,7 @@ export default function Game() {
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [dispatch]);
+  }, [state]);
 
   useEffect(() => {
     if (state.playing === false) {
@@ -101,8 +101,7 @@ export default function Game() {
         height: 30,
         width: 30
       };
-      //showObstacles(obstacles, displayBlocks, dispatch);
-      //const collisions = [...state.obstacles].map(ob => {
+
       state.obstacles.map(ob => {
         ob.x += -5;
         return willCollide(state.player, ob, state.alive, dispatch);
