@@ -141,7 +141,7 @@ export default function Game() {
           player
         }
       });
-    }, 25);
+    }, 50);
     return () => clearTimeout(handle);
   }, [state]);
 
