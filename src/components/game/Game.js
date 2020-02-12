@@ -64,12 +64,12 @@ export default function Game() {
             jumping: false
           }
         });
-      }, 550);
+      }, 700);
 
       dispatch({
         type: "MOVE_PLAYER",
         payload: {
-          dy: -5,
+          dy: -7,
           r: state.player.r + 450,
           falling: false,
           landed: false,
@@ -103,7 +103,7 @@ export default function Game() {
       };
 
       state.obstacles.map(ob => {
-        ob.x += -5;
+        ob.x += -7;
         return willCollide(state.player, ob, state.alive, dispatch);
       });
 
@@ -119,7 +119,7 @@ export default function Game() {
         player.landed = false;
       }
       if (state.player.falling === true) {
-        player.dy = 5;
+        player.dy = 7;
       }
       // bottom limit
       if (state.player.y + 5 + player.height > 300) {
@@ -140,7 +140,7 @@ export default function Game() {
           player
         }
       });
-    }, 25);
+    }, 50);
     return () => clearTimeout(handle);
   }, [state]);
 

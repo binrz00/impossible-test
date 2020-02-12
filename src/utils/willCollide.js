@@ -8,13 +8,13 @@ export default function willCollide(player, rect2) {
   ) {
     player.alive = false;
   }
-  if (player.y + 5 > 270) {
+  if (player.y + 7 > 270) {
     player.alive = false;
   }
   //y collision
   if (
     player.y < rect2.y + 30 &&
-    rect2.y < player.y + 5 + player.height &&
+    rect2.y < player.y + 7 + player.height &&
     player.x < rect2.x + rect2.width &&
     player.x + player.width > rect2.x &&
     player.jumping === false
@@ -32,7 +32,7 @@ export default function willCollide(player, rect2) {
     player.x > rect2.x + rect2.width &&
     player.dy === 0 &&
     player.dy !== -5 &&
-    player.y + 5 + player.height !== 300
+    player.y + 7 + player.height !== 300
   ) {
     player.falling = true;
   }
