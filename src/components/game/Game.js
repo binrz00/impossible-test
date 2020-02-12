@@ -82,7 +82,7 @@ export default function Game() {
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [state]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (state.playing === false) {
