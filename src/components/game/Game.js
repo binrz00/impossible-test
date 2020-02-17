@@ -75,9 +75,8 @@ export default function Game() {
           }
         });
       }, 574);
-
+      //extra clear timeout
       clearTimeout(jump);
-
       return () => clearTimeout(jump);
     }
   }
