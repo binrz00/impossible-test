@@ -60,6 +60,7 @@ export default function Game() {
         dispatch({
           type: "MOVE_PLAYER",
           payload: {
+            dy: 10,
             falling: true,
             jumping: false
           }
