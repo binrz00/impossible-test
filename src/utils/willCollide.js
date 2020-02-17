@@ -1,4 +1,4 @@
-export default function willCollide(player, rect2) {
+export default function willCollide(player, rect2, dispatch) {
   //x collision
   if (
     player.y < rect2.y + 30 &&
@@ -24,6 +24,12 @@ export default function willCollide(player, rect2) {
     }
     player.landed = true;
     player.falling = false;
+    dispatch({
+      type: "RENDER",
+      payload: {
+        player
+      }
+    });
   }
   // falling
   if (
@@ -35,6 +41,12 @@ export default function willCollide(player, rect2) {
     player.y + 5 + player.height !== 300
   ) {
     player.falling = true;
+    dispatch({
+      type: "RENDER",
+      payload: {
+        player
+      }
+    });
   }
 
   return { player };
