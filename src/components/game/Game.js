@@ -56,16 +56,6 @@ export default function Game() {
       state.player.dy === 0 &&
       state.player.jumping === false
     ) {
-      const jump = setTimeout(() => {
-        dispatch({
-          type: "MOVE_PLAYER",
-          payload: {
-            falling: true,
-            jumping: false
-          }
-        });
-      }, 574);
-
       dispatch({
         type: "MOVE_PLAYER",
         payload: {
@@ -76,6 +66,15 @@ export default function Game() {
           jumping: true
         }
       });
+      const jump = setTimeout(() => {
+        dispatch({
+          type: "MOVE_PLAYER",
+          payload: {
+            falling: true,
+            jumping: false
+          }
+        });
+      }, 574);
       return () => clearTimeout(jump);
     }
   }
@@ -105,7 +104,7 @@ export default function Game() {
       //const collisions = [...state.obstacles].map(ob => {
       state.obstacles.map(ob => {
         ob.x += -5;
-        return willCollide(state.player, ob, state.alive, dispatch);
+        return willCollide(state.player, ob, dispatch);
       });
 
       dispatch({
