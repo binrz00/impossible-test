@@ -1,3 +1,4 @@
+
 export default function showObstacles(obstacles, displayBlocks, dispatch) {
   for (let i = 0; i < obstacles.length; i++) {
     dispatch({
