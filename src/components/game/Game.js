@@ -56,34 +56,32 @@ export default function Game() {
       state.player.dy === 0 &&
       state.player.jumping === false
     ) {
-      const jump = setTimeout(() => {
-        dispatch({
-          type: "MOVE_PLAYER",
-          payload: {
-            dy: 10,
-            falling: true,
-            jumping: false
-          }
-        });
-      }, 700);
-
       dispatch({
         type: "MOVE_PLAYER",
         payload: {
-          dy: -10,
+          dy: -5,
           r: state.player.r + 450,
           falling: false,
           landed: false,
           jumping: true
         }
       });
+      const jump = setTimeout(() => {
+        dispatch({
+          type: "MOVE_PLAYER",
+          payload: {
+            falling: true,
+            jumping: false
+          }
+        });
+      }, 574);
       return () => clearTimeout(jump);
     }
   }
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [state]);
+  }, [state, handleKeyDown]);
 
   useEffect(() => {
     if (state.playing === false) {
@@ -102,10 +100,11 @@ export default function Game() {
         height: 30,
         width: 30
       };
-
+      //showObstacles(obstacles, displayBlocks, dispatch);
+      //const collisions = [...state.obstacles].map(ob => {
       state.obstacles.map(ob => {
-        ob.x += -10;
-        return willCollide(state.player, ob, state.alive, dispatch);
+        ob.x += -5;
+        return willCollide(state.player, ob, dispatch);
       });
 
       dispatch({
@@ -120,7 +119,7 @@ export default function Game() {
         player.landed = false;
       }
       if (state.player.falling === true) {
-        player.dy = 10;
+        player.dy = 5;
       }
       // bottom limit
       if (state.player.y + 5 + player.height > 300) {
@@ -130,6 +129,7 @@ export default function Game() {
         player.dy = 0;
       } else if (state.player.y + state.player.dy < 0) {
         //top limit
+        player.alive = false;
         player.y = 0;
       } else {
         player.y = player.y + player.dy;
@@ -141,7 +141,7 @@ export default function Game() {
           player
         }
       });
-    }, 75);
+    }, 25);
     return () => clearTimeout(handle);
   }, [state]);
 
